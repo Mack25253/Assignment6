@@ -1,0 +1,34 @@
+// Nicholas Kuras
+// Purpose of this assignment is developing code using inheritance, polymorphism, composition, and abstraction.
+
+package a6;
+
+import java.util.Comparator;
+
+// NodeSorter class implements a Comparator to sort nodes based on their sum of coordinates
+public class NodeSorter<T extends INode<T>> implements Comparator<T> {
+    
+    // Compare method to compare two nodes based on their sum of coordinates
+    @Override
+    public int compare(T o1, T o2) {
+        // Calculate the sum of coordinates for both nodes
+        int sum1 = calculateSum(o1);
+        int sum2 = calculateSum(o2);
+        // Compare the sums and return the result
+        return Integer.compare(sum1, sum2);
+    }
+
+    // Method to calculate the sum of coordinates for a node
+    private int calculateSum(T node) {
+        // Check the type of node and calculate the sum accordingly
+        if (node instanceof ThreeDNode) {
+            // If the node is a ThreeDNode, calculate sum of x, y, and z coordinates
+            ThreeDNode threeDNode = (ThreeDNode) node;
+            return threeDNode.getX() + threeDNode.getY() + threeDNode.getZ();
+        } else {
+            // If the node is a simple Node, calculate sum of x and y coordinates
+            Node simpleNode = (Node) node;
+            return simpleNode.getX() + simpleNode.getY();
+        }
+    }
+}
