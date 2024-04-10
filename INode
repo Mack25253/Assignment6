@@ -1,0 +1,11 @@
+// Nicholas Kuras
+// Purpose of this assignment is developing code using inheritance, polymorphism, composition, and abstraction.
+
+package a6;
+
+// Define an interface for nodes that are capable of adding other nodes of the same type.
+// The generic type T must implement the INode interface itself and be comparable to other instances of T.
+public interface INode<T extends INode<T>> extends Comparable<T> {
+    // Method to add another node of the same type to this node.
+    void add(T node);
+}
