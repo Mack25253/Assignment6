@@ -1,3 +1,6 @@
+// Nicholas Kuras
+// Purpose of this assignment is developing code using inheritance, polymorphism, composition, and abstraction.
+
 package a6;
 
 import java.util.Scanner;
