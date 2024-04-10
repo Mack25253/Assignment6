@@ -1,0 +1,65 @@
+// Nicholas Kuras
+// Purpose of this assignment is developing code using inheritance, polymorphism, composition, and abstraction.
+
+package a6;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+// Nodes class manages a list of INode instances
+public class Nodes {
+    private ArrayList<INode<?>> nodeList; // List to store nodes
+
+    // Constructor initializes the nodeList
+    public Nodes() {
+        nodeList = new ArrayList<>();
+    }
+
+    // Method to fill the nodeList with random nodes
+    public void fill(int size) {
+        Random random = new Random();
+        for (int i = 0; i < size; i++) {
+            // Randomly choose between creating a Node or a ThreeDNode
+            if (random.nextBoolean()) {
+                nodeList.add(new Node(random.nextInt(201) - 100, random.nextInt(201) - 100));
+            } else {
+                nodeList.add(new ThreeDNode(random.nextInt(201) - 100, random.nextInt(201) - 100, random.nextInt(201) - 100));
+            }
+        }
+    }
+
+    // Method to clear the nodeList
+    public void clear() {
+        nodeList.clear();
+    }
+
+    // Method to count the number of 2D Nodes in the nodeList
+    public int countNodes() {
+        return (int) nodeList.stream().filter(n -> n instanceof Node && !(n instanceof ThreeDNode)).count();
+    }
+
+    // Method to count the number of ThreeDNodes in the nodeList
+    public int countThreeDNodes() {
+        return (int) nodeList.stream().filter(n -> n instanceof ThreeDNode).count();
+    }
+
+    // Method to sort the nodeList
+    public void sort() {
+        nodeList.sort((o1, o2) -> {
+            if (o1 instanceof Node && o2 instanceof Node) {
+                return ((Node) o1).compareTo((Node) o2);
+            }
+            return 0;
+        });
+    }
+
+    // Method to generate a string representation of the nodeList
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for (INode<?> node : nodeList) {
+            sb.append(node.toString()).append("\n");
+        }
+        return sb.toString();
+    }
+}
