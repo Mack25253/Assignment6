@@ -1,1 +1,72 @@
+package a6;
 
+import java.util.Scanner;
+
+public class Driver {
+    public static void main(String[] args) throws Exception {
+        // Create an instance of Nodes class to work with nodes
+        Nodes nodes = new Nodes();
+        
+        // Create a Scanner object to get user input
+        Scanner scanner = new Scanner(System.in);
+        int choice;
+
+        // Display menu and handle user input until they choose to exit
+        do {
+            System.out.println("Menu:");
+            System.out.println("1. Fill");
+            System.out.println("2. Clear");
+            System.out.println("3. Count Nodes");
+            System.out.println("4. Count ThreeDNodes");
+            System.out.println("5. Sort");
+            System.out.println("6. Display");
+            System.out.println("7. Exit");
+            System.out.print("Enter your choice: ");
+            // Read user choice
+            choice = scanner.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.print("Enter the size: ");
+                    // Read the size from the user
+                    int size = scanner.nextInt();
+                    // Fill nodes with the specified size
+                    nodes.fill(size);
+                    System.out.println("Nodes filled.");
+                    break;
+                case 2:
+                    // Clear all nodes
+                    nodes.clear();
+                    System.out.println("Nodes cleared.");
+                    break;
+                case 3:
+                    // Count and display the total number of nodes
+                    System.out.println("Number of Nodes: " + nodes.countNodes());
+                    break;
+                case 4:
+                    // Count and display the total number of ThreeDNodes
+                    System.out.println("Number of ThreeDNodes: " + nodes.countThreeDNodes());
+                    break;
+                case 5:
+                    // Sort nodes
+                    nodes.sort();
+                    System.out.println("Nodes sorted.");
+                    break;
+                case 6:
+                    // Display nodes
+                    System.out.println(nodes.toString());
+                    break;
+                case 7:
+                    // Exit the program
+                    System.out.println("Exiting...");
+                    break;
+                default:
+                    // Handle invalid input
+                    System.out.println("Invalid choice. Please enter again.");
+            }
+        } while (choice != 7);
+
+        // Close the scanner
+        scanner.close();
+    }
+}
