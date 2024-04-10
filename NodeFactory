@@ -1,0 +1,31 @@
+// Nicholas Kuras
+// Purpose of this assignment is developing code using inheritance, polymorphism, composition, and abstraction.
+
+package a6;
+
+import java.util.Random;
+
+// NodeFactory class responsible for creating instances of nodes
+public class NodeFactory {
+    // Random number generator for generating coordinates
+    private static final Random random = new Random();
+
+    // Method to create a 2D Node with random coordinates
+    public static Node getNode() {
+        // Generate random x and y coordinates within the range [-100, 100]
+        int x = random.nextInt(201) - 100; // Generates a value between -100 and 100
+        int y = random.nextInt(201) - 100;
+        // Create and return a new Node with the generated coordinates
+        return new Node(x, y);
+    }
+
+    // Method to create a 3D Node with random coordinates
+    public static ThreeDNode getThreeDNode() {
+        // Generate random x, y, and z coordinates within the range [-100, 100]
+        int x = random.nextInt(201) - 100;
+        int y = random.nextInt(201) - 100;
+        int z = random.nextInt(201) - 100;
+        // Create and return a new ThreeDNode with the generated coordinates
+        return new ThreeDNode(x, y, z);
+    }
+}
