@@ -1,0 +1,67 @@
+// Nicholas Kuras
+// Purpose of this assignment is developing code using inheritance, polymorphism, composition, and abstraction.
+
+
+package a6;
+
+// Node class implements the INode interface
+public class Node implements INode<Node> {
+    // Coordinates of the node
+    protected int x, y;
+    // Constants defining the valid range for coordinates
+    public static final int MIN_RANGE = -100, MAX_RANGE = 100;
+
+    // Default constructor initializes coordinates to (0, 0)
+    public Node() {
+        this.x = 0; this.y = 0;
+    }
+
+    // Parameterized constructor to set coordinates based on given values
+    public Node(int x, int y) {
+        setX(x); setY(y);
+    }
+
+    // Copy constructor to create a new node with the same coordinates as another node
+    public Node(Node other) {
+        this.x = other.x; this.y = other.y;
+    }
+
+    // Setter method for x coordinate with range validation
+    public void setX(int x) {
+        if (x < MIN_RANGE || x > MAX_RANGE)
+            throw new IllegalArgumentException("X out of range");
+        this.x = x;
+    }
+
+    // Setter method for y coordinate with range validation
+    public void setY(int y) {
+        if (y < MIN_RANGE || y > MAX_RANGE)
+            throw new IllegalArgumentException("Y out of range");
+        this.y = y;
+    }
+
+    // Getter method for x coordinate
+    public int getX() { return x; }
+
+    // Getter method for y coordinate
+    public int getY() { return y; }
+
+    // Method to add another node's coordinates to this node's coordinates
+    @Override
+    public void add(Node other) {
+        this.x += other.x;
+        this.y += other.y;
+    }
+
+    // Method to represent the node as a string in the format (x, y)
+    @Override
+    public String toString() {
+        return String.format("(%d, %d)", x, y);
+    }
+
+    // Method to compare nodes based on the sum of their coordinates
+    @Override
+    public int compareTo(Node o) {
+        return Integer.compare(this.x + this.y, o.x + o.y);
+    }
+}
