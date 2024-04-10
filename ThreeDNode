@@ -1,0 +1,53 @@
+// Nicholas Kuras
+// Purpose of this assignment is developing code using inheritance, polymorphism, composition, and abstraction.
+
+package a6;
+
+// ThreeDNode class extends the Node class to represent nodes in three dimensions
+public class ThreeDNode extends Node {
+    private int z; // Additional coordinate for the third dimension
+
+    // Default constructor initializes coordinates to (0, 0, 0)
+    public ThreeDNode() {
+        super(); // Call to superclass constructor to set x and y coordinates to 0
+        this.z = 0;
+    }
+
+    // Parameterized constructor to set coordinates based on given values
+    public ThreeDNode(int x, int y, int z) {
+        super(x, y); // Call to superclass constructor to set x and y coordinates
+        setZ(z); // Set z coordinate
+    }
+
+    // Copy constructor to create a new ThreeDNode with the same coordinates as another ThreeDNode
+    public ThreeDNode(ThreeDNode other) {
+        super(other); // Call to superclass copy constructor to copy x and y coordinates
+        this.z = other.z; // Copy z coordinate
+    }
+
+    // Setter method for z coordinate with range validation
+    public void setZ(int z) {
+        if (z < MIN_RANGE || z > MAX_RANGE)
+            throw new IllegalArgumentException("Z out of range");
+        this.z = z;
+    }
+
+    // Getter method for z coordinate
+    public int getZ() { return z; }
+
+    // Method to add coordinates of another node to this node's coordinates
+    @Override
+    public void add(Node other) {
+        super.add(other); // Call to superclass method to add x and y coordinates
+        if (other instanceof ThreeDNode) {
+            ThreeDNode o = (ThreeDNode) other;
+            this.z += o.z; // Add z coordinate if the other node is also a ThreeDNode
+        }
+    }
+
+    // Method to generate a string representation of the node including its x, y, and z coordinates
+    @Override
+    public String toString() {
+        return String.format("(%d, %d, %d)", x, y, z);
+    }
+}
